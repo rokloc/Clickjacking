@@ -12,7 +12,7 @@ X-Frame-Options: DENY
 ```
 結果そのサイトはiframeに一切埋め込めなくさせる事ができる
 
-## CSP (Content-Security-Policy)を設定する
+## CSP (Content-Security-Policy)を設定する（新しい）
 ```
 //SecurityConfig
 @Configuration
