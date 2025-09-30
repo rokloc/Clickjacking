@@ -1,9 +1,20 @@
 # クリックジャッキング
 攻撃者が、攻撃者のサイトに正規サイトをiframe等で読み込んでログイン済みセッションを利用して透明なボタンを押させるなどして不正なリクエストをさせる攻撃
 
-# 対策
+# 対策の心得
 対策の本質は 攻撃者が自サイトから正規サイトを iframe 等で読み込めないようにすること
+
+# 対策
+## X-Frame-Optionsを使う（古め）
+SpringSecurityではデフォルトでレスポンスに以下のヘッダが付与される
 ```
+X-Frame-Options: DENY
+```
+結果そのサイトはiframeに一切埋め込めなくさせる事ができる
+
+## CSP (Content-Security-Policy)を設定する
+```
+//SecurityConfig
 @Configuration
 public class SecurityConfig {
 
@@ -14,7 +25,7 @@ public class SecurityConfig {
 
           // クリックジャッキング対策の設定
           .headers(headers -> headers
-              // iframe埋め込みを全面禁止（全サイトからのiframeを拒否）
+              // iframe埋め込みを全面禁止（全サイトからのiframeを拒否）（SpringSecurityデフォルトなので記述不要）
               .frameOptions(frame -> frame.deny())
               // さらにCSPで同じオリジンからのiframe埋め込みのみ許可（不要かもだけどこの実装が推奨されている）
               .contentSecurityPolicy(csp -> csp
