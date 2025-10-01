@@ -37,6 +37,9 @@ public class SecurityConfig {
     }
 }
 ```
+<img width="1218" height="214" alt="スクリーンショット (18)" src="https://github.com/user-attachments/assets/f17ee64a-af4e-43ea-a889-1fc72b3f99d0" />
+
+
 
 
 
